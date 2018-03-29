@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relative"
+>
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FF9900"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANDROID APP"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            />
+    </LinearLayout>
+          <EditText
+              android:id="@+id/edit_txt_one"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="UserName"
+              android:layout_below="@+id/line1"
+              android:layout_marginTop="20dp"/>
+    <EditText
+        android:id="@+id/edit_txt_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_txt_one"
+        android:layout_marginTop="10dp"
+        android:hint="PassWord"/>
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="channel"
+        android:background="#ffffff"
+        />
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Sign in"
+        android:background="#ffffff"/>
+
+</RelativeLayout>
