@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
           protected  String value="我传给第二个界面的值";
           private static final String  GET_VALUE_NAME="返回的第一个名字";
           protected  Button btn3,btn4,btn5;
+          protected int values=1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                  Intent intent=new Intent(MainActivity.this,Main_Actionmode_listview_Activity.class);
-                 startActivity(intent);
+                 intent.putExtra("position",values);
+                 startActivityForResult(intent,3);
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {

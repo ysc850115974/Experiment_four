@@ -1,5 +1,6 @@
 package com.example.administrator.experiment_four;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -22,23 +24,38 @@ import java.util.Map;
 
 public class Main_Actionmode_listview_Activity extends AppCompatActivity {
         protected ListView  listview;
+        protected Button btn_context;
         protected SimpleAdapter adapter;
         protected List<Map<String,Object>> list;
         protected String  [] key={"key_image","key_txt"};
         protected int [] id={R.id.image_actionmoed_unit,R.id.txt_actionmode_unit};
         protected int []value_image={R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher};
         protected String [] value_txt={"One","Two","Three","Four","Five"};
+        public int position,values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actionmode_listview);
+        btn_context=findViewById(R.id.btn_tiaozhuan2);
+        btn_context.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.putExtra("position",position);
+                setResult(4,intent);
+            }
+        });
+        values=  getIntent().getIntExtra("position",1000);
+       set_result();
         listview=findViewById(R.id.list_view_actionmode);
+
+        datachange();
         list=getData();
         adapter=new SimpleAdapter(Main_Actionmode_listview_Activity.this,list,R.layout.actionmode_listview_unit,key,id);
         listview.setAdapter(adapter);
         this.registerForContextMenu(listview);//对列表视图进行登记才能长按产生浮动上下文菜单
-        listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+
          listview.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
              @Override
              public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
@@ -72,6 +89,20 @@ public class Main_Actionmode_listview_Activity extends AppCompatActivity {
 
     }
 
+    private void set_result() {
+        getIntent().putExtra("delete_item",position);
+
+
+    }
+
+    private void datachange() {
+        if(position!=1000)
+        {
+
+        }
+
+    }
+
     private List<Map<String,Object>> getData() {
         List<Map<String,Object>> data= new ArrayList<>() ;
 
@@ -95,7 +126,7 @@ public class Main_Actionmode_listview_Activity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info= (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int position=info.position;
+         position=info.position;
         switch(item.getItemId())
         {
           case  R.id.menu_delete: list.remove(position);
